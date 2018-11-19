@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			   http://www.springframework.org/schema/tx 
+		           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		           http://www.springframework.org/schema/context 
+		           http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!-- la couche dao -->
+    <bean id="IDepartementDao" class= "com.mekomou.sprinsecurity.dao.impl.DepartementDaoImpl" />
+    <bean id="IDroitDao" class= "com.mekomou.sprinsecurity.dao.impl.DroitDaoImpl" />
+    <bean id="IEtudiantDao" class= "com.mekomou.sprinsecurity.dao.impl.EtudiantDaoImpl" />
+    <bean id="IUtilisateurDao" class= "com.mekomou.sprinsecurity.dao.impl.UtilisateurDaoImpl" />
+    
+       
+    <!-- la couche service -->
+   <bean id="IDepartementService" class= "com.mekomou.sprinsecurity.service.impl.DepartementServiceImpl" >
+        <property name="departementDao" ref="IDepartementDao" />     
+    </bean>
+    <bean id="IDroitService" class= "com.mekomou.sprinsecurity.service.impl.DroitServiceImpl" >
+        <property name="droitDao" ref="IDroitDao" />     
+    </bean>
+    <bean id="IEtudiantService" class= "com.mekomou.sprinsecurity.service.impl.EtudiantServiceImpl" >
+        <property name="etudiantDao" ref="IEtudiantDao" />     
+    </bean>
+    <bean id="IUtilisateurService" class= "com.mekomou.sprinsecurity.service.impl.UtilisateurServiceImpl" >
+        <property name="utilisateurDao" ref="IUtilisateurDao" />
+        <property name="departementDao" ref="IDepartementDao" />         
+    </bean>
+    
+    
+    
+    
+
+    <!-- couche de persistance JPA -->
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+            
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+                <property name="generateDdl" value="true" />
+            </bean>
+        </property>
+        <property name="loadTimeWeaver">
+            <bean
+                class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
+        </property>
+    </bean>
+    
+    
+    <!--  Déclaration du PropertyPlaceholderConfigurer -->   
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:/db.properties</value>
+			</list>
+		</property>
+	</bean>
+    
+    <!-- la source de donnéees DBCP -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
+        <property name="driverClassName" value="${db.driver}" />
+        <property name="url" value="${db.url}" />
+        <property name="username" value="${db.username}" />
+        <property name="password" value="${db.password}" />
+    </bean>
+
+    <!-- le gestionnaire de transactions -->
+    <tx:annotation-driven transaction-manager="txManager" />
+    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+
+    <!-- traduction des exceptions -->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+    <!-- annotations de persistance -->
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+</beans>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog  widgetVar="CreateDialog" modal="true" resizable="false" appendToBody="true" header="#{msg['utilisateur.titreCreation']}" showEffect="explode" hideEffect="clip" >
+
+            <h:form id="CreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" id="dd">
+
+                        <p:outputLabel value="nom *" for="nom" />
+                        <p:inputText id="nom" value="#{utilisateurBean.utilisateur.username}" title="nom"  />
+
+                        <p:outputLabel value="mot de passe *" for="sigle" />
+                        <p:inputText id="sigle" value="#{utilisateurBean.utilisateur.password}" title="sigle"  />
+
+                        <p:outputLabel value="droit *"  />
+                        <p:selectOneMenu value="#{utilisateurBean.idDroit}" style="width: 100%"   >
+                            <f:selectItem itemValue="1" itemLabel="Administrateur" />
+                            <f:selectItem itemValue="2" itemLabel="Utilisateur" />
+                            <f:selectItem itemValue="3" itemLabel="Chef de departement" />
+                            <p:ajax update="departement" />
+                        </p:selectOneMenu>
+                        <p:outputLabel   value="departement "  />
+                        
+                        <p:selectOneMenu id="departement"  value="#{utilisateurBean.idDepartement}"  style="width: 100%" disabled="#{utilisateurBean.isDisabled}" >
+                            <f:selectItem itemValue="" itemLabel="Choisir" />
+                            <f:selectItems value="#{utilisateurBean.departements}" var="v" itemLabel="#{v.sigle}" itemValue="#{v.id}" />
+                            
+                        </p:selectOneMenu>
+                     
+                    </p:panelGrid>
+                    <p:commandButton value="#{msg['bouton.creer']}" actionListener="#{utilisateurBean.save}"  update="display,:ListForm:datalist,:growl" oncomplete="CreateDialog.hide();"/>
+                    <p:commandButton value="#{msg['bouton.annuler']}" actionListener="#{departementBean.cancel}" oncomplete="CreateDialog.hide();" update=":growl" />
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+
+
+    </ui:composition>
+
+</html>

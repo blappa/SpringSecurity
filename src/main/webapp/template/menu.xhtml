@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <h:outputStylesheet library="css" name="styles.css" />
+    </h:head> 
+    <body>
+        <ui:composition>
+            <h:form >  
+                <p:panel visible="#{loginBean.admin()}">
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <h:commandLink value="#{msg['welcome.langue1']}" action="#{loginBean.setFrenchLocale}" /> 
+                        <h:outputText value="  " />
+                        <h:commandLink value="#{msg['welcome.langue2']}" action="#{loginBean.setEnglishLocale}" />   
+                    </p:toolbarGroup>  
+                    <p:toolbarGroup align="right">  
+                        <p:outputLabel value="#{msg['welcome.nom']} #{loginBean.username}"  />  
+                    </p:toolbarGroup>  
+                </p:toolbar>  
+                <p:toolbar>  
+                    <p:toolbarGroup align="left" >  
+                        <p:menubar >  
+                            <p:menuitem value="#{msg['home.nom']}"  icon="ui-icon-home" outcome="/pages/welcome.xhtml"   /> 
+                            <p:menuitem value="#{msg['etudiant.nomM']}"  url="/pages/etudiant/index.xhtml"  /> 
+                            <p:menuitem value="#{msg['departement.nomM']}" url="/pages/departement/index.xhtml"  /> 
+                            <p:menuitem value="#{msg['utilisateur.nomM']}" url="/pages/utilisateur/index.xhtml" /> 
+                            <p:menuitem value="Plagiat"  /> 
+                            <p:menuitem value="Aide" icon="ui-icon-help"  /> 
+                        </p:menubar>  
+                    </p:toolbarGroup> 
+                    <p:toolbarGroup align="right">  
+                        <p:menubar>  
+                            <p:menuitem value="#{msg['welcome.profil']}" icon="ui-icon-extlink"  /> 
+                            <p:menuitem value="#{msg['welcome.deconnexion']}" icon="ui-icon-power"  url="/sprinSecurity/j_spring_security_logout"  /> 
+                        </p:menubar> 
+                    </p:toolbarGroup>  
+                </p:toolbar>  
+                </p:panel>
+                
+                <p:panel visible="#{loginBean.chef()}">
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <h:commandLink value="#{msg['welcome.langue1']}" action="#{loginBean.setFrenchLocale}" /> 
+                        <h:outputText value="  " />
+                        <h:commandLink value="#{msg['welcome.langue2']}" action="#{loginBean.setEnglishLocale}" />   
+                    </p:toolbarGroup>  
+                    <p:toolbarGroup align="right">  
+                        <p:outputLabel value="#{msg['welcome.nom']} #{loginBean.username}"  />  
+                    </p:toolbarGroup>  
+                </p:toolbar>  
+                <p:toolbar>  
+                    <p:toolbarGroup align="left" >  
+                        <p:menubar >  
+                            <p:menuitem value="#{msg['home.nom']}"  icon="ui-icon-home" outcome="/pages/welcome.xhtml"   /> 
+                            <p:menuitem value="#{msg['etudiant.nomM']}"  url="/pages/etudiant/index.xhtml"  /> 
+                            <p:menuitem value="#{msg['departement.nomM']}" url="/pages/departement/index.xhtml"  /> 
+                            <p:menuitem value="Plagiat"  /> 
+                            <p:menuitem value="Aide" icon="ui-icon-help"  /> 
+                        </p:menubar>  
+                    </p:toolbarGroup> 
+                    <p:toolbarGroup align="right">  
+                        <p:menubar>  
+                            <p:menuitem value="#{msg['welcome.profil']}" icon="ui-icon-extlink"  /> 
+                            <p:menuitem value="#{msg['welcome.deconnexion']}" icon="ui-icon-power"  url="/sprinSecurity/j_spring_security_logout"  /> 
+                        </p:menubar> 
+                    </p:toolbarGroup>  
+                </p:toolbar>  
+                </p:panel>
+                
+                <p:panel visible="#{loginBean.user()}">
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <h:commandLink value="#{msg['welcome.langue1']}" action="#{loginBean.setFrenchLocale}" /> 
+                        <h:outputText value="  " />
+                        <h:commandLink value="#{msg['welcome.langue2']}" action="#{loginBean.setEnglishLocale}" />   
+                    </p:toolbarGroup>  
+                    <p:toolbarGroup align="right">  
+                        <p:outputLabel value="#{msg['welcome.nom']} #{loginBean.username}"  />  
+                    </p:toolbarGroup>  
+                </p:toolbar>  
+                <p:toolbar>  
+                    <p:toolbarGroup align="left" >  
+                        <p:menubar >  
+                            <p:menuitem value="#{msg['home.nom']}"  icon="ui-icon-home" outcome="/pages/welcome.xhtml"   /> 
+                            <p:menuitem value="#{msg['utilisateur.nomM']}" url="/pages/utilisateur/index.xhtml" /> 
+                            <p:menuitem value="Aide" icon="ui-icon-help"  /> 
+                        </p:menubar>  
+                    </p:toolbarGroup> 
+                    <p:toolbarGroup align="right">  
+                        <p:menubar>  
+                            <p:menuitem value="#{msg['welcome.profil']}" icon="ui-icon-extlink"  /> 
+                            <p:menuitem value="#{msg['welcome.deconnexion']}" icon="ui-icon-power"  url="/sprinSecurity/j_spring_security_logout"  /> 
+                        </p:menubar> 
+                    </p:toolbarGroup>  
+                </p:toolbar>  
+                </p:panel>
+                
+            </h:form>  
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+
+ 
+    <h:head>
+        <title>Authentification</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <h:outputStylesheet library="css" name="styles.css" />
+    </h:head>
+    <h:body onload='document.f.j_username.focus();' >
+
+        <c:if test="${not empty error}">
+            <div id="errorform">
+                Vos parametres  ne sont pas corrects!
+            </div>
+        </c:if>
+
+        <form method="POST" action="j_spring_security_check" id="loginform" style="width: 28%" >
+
+            <p:panel header="Veuillez entrer vos parametres de connection " >
+                <h:panelGrid columns="2"  cellpadding="1">
+                    <h:outputLabel id="name" for="name" value="Nom :" />
+                    <input type='text' name='j_username' value=''/>
+                    <h:outputLabel id="passwd" for="passwd" value="Mot de passe: " />
+                    <input type='password' name='j_password' />
+                </h:panelGrid>
+                <input  type="submit" value="Se connecter"  />
+                <input type="reset" value="Vider les champs" />
+            </p:panel>   
+        </form>
+    </h:body>
+</html>
+

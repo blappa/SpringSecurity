@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog  widgetVar="EditDialog" modal="true" resizable="false" appendToBody="true" header="#{msg['departement.titreEdition']}" showEffect="explode" hideEffect="clip"  >
+
+            <h:form id="EditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{departementBean.selectedDepartement != null}">
+
+                        <p:outputLabel value="nom" for="motif" />
+                        <p:inputText id="motif" value="#{departementBean.selectedDepartement.name}" title="#{myBundle.EditDecesTitle_motif}" />
+
+                        <p:outputLabel value="sigle" for="quantite" />
+                        <p:inputText id="quantite" value="#{departementBean.selectedDepartement.sigle}" title="#{myBundle.EditDecesTitle_quantite}" required="true" requiredMessage="#{myBundle.EditDecesRequiredMessage_quantite}"/>
+                    </p:panelGrid>
+                    <p:panel visible="false" >
+                        <p:inputText id="id" value="#{departementBean.selectedDepartement.id}" title="#{myBundle.EditDecesTitle_quantite}" required="true" requiredMessage="#{myBundle.EditDecesRequiredMessage_quantite}"/>
+                    </p:panel>
+                </h:panelGroup>
+
+                <p:commandButton actionListener="#{departementBean.modifier}" value="#{msg['bouton.modifier']}" update="display,:ListForm:datalist,:growl" oncomplete="EditDialog.hide();" />
+                <p:commandButton value="#{msg['bouton.annuler']}"  actionListener="#{departementBean.cancel}" onclick="EditDialog.hide();" update=":growl"/>
+
+ 
+            </h:form>
+
+        </p:dialog>
+
+
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog  widgetVar="ViewDialog" modal="true" resizable="false" appendToBody="true" header="#{msg['utilisateur.titreDetail']}" showEffect="explode" hideEffect="clip">
+
+            <h:form id="ViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{utilisateurBean.selectedUtilisateur!= null}">
+
+                        <p:outputLabel value="nom: "  />
+                        <p:outputLabel  value="#{utilisateurBean.selectedUtilisateur.username}"  />
+                        <p:outputLabel value="Mot de passe : "  />
+                        <p:outputLabel  value="#{utilisateurBean.selectedUtilisateur.password}" />
+                        <p:outputLabel value="droit d'acces: "  />
+                        <p:outputLabel  value="#{utilisateurBean.selectedUtilisateur.droit.type}"  />
+                        <p:outputLabel value="departement concerne : "  />
+                        <p:outputLabel  value="#{utilisateurBean.selectedUtilisateur.departement.sigle}" />
+                    </p:panelGrid>
+                    <p:commandButton value="fermer" onclick="ViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

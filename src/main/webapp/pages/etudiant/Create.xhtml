@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <ui:composition>
+
+        <p:dialog  widgetVar="CreateDialog" modal="true" resizable="false" appendToBody="true" header="#{msg['etudiant.titreCreation']}" showEffect="explode" hideEffect="clip" >
+
+            <h:form id="CreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" id="dd">
+
+                        <p:outputLabel value="nom *" for="nom" />
+                        <p:inputText id="nom" value="#{etudiantBean.etudiant.name}" title="nom"  />
+
+                        <p:outputLabel value="note *" for="sigle" />
+                        <p:inputText id="sigle" value="#{etudiantBean.etudiant.note}" title="sigle"  />
+                        
+                        <p:outputLabel value="date de naissance" for="sigle1" />
+                        <p:calendar id="sigle1" value="#{etudiantBean.etudiant.birthDate}" title="sigle" effect="explode"  />
+
+                        <p:outputLabel value="departement"  />
+                        <p:selectOneMenu value="#{etudiantBean.idDepartement}" style="width: 100%"   >
+                            <f:selectItem itemValue="" itemLabel="Choisir" />
+                            <f:selectItems value="#{etudiantBean.departements}" var="v" itemLabel="#{v.sigle}" itemValue="#{v.id}" />
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="continent"  />
+                        <p:selectOneMenu value="#{etudiantBean.nomContinent}" style="width: 100%"   >
+                            <f:selectItem itemValue="" itemLabel="Choisir" />
+                            <f:selectItems value="#{etudiantBean.continent}"  />
+                            <p:ajax update="pays"   />  
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="pays"  />
+                        <p:selectOneMenu  id="pays" value="#{etudiantBean.nomPays}" style="width: 100%" disabled="#{etudiantBean.paysDisabled}"  >
+                            <f:selectItem itemValue="" itemLabel="Choisir" />
+                            <f:selectItems value="#{etudiantBean.pays}"  />
+                            <p:ajax update="ville"   /> 
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="ville"  />
+                        <p:selectOneMenu id="ville" value="#{etudiantBean.nomVille}" style="width: 100%" disabled="#{etudiantBean.villeDisabled}"  >
+                            <f:selectItem itemValue="" itemLabel="Choisir" />
+                            <f:selectItems value="#{etudiantBean.ville}" />
+                             <p:ajax update="selection"   /> 
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="la ville selectionne est: "  />
+                        <p:outputLabel id="selection" value="#{etudiantBean.nomVille}"/>
+                        
+                    </p:panelGrid>
+                    <p:commandButton value="#{msg['bouton.creer']}" actionListener="#{etudiantBean.save}"  update="display,:ListForm:datalist,:growl" oncomplete="CreateDialog.hide();"/>
+                    <p:commandButton value="#{msg['bouton.annuler']}"  oncomplete="CreateDialog.hide();" update=":growl" />
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+
+
+    </ui:composition>
+
+</html>

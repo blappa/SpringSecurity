@@ -1,0 +1,90 @@
+
+
+html {
+    background: rgb(174, 188, 191); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(30,87,153,1) 0%, rgba(125,185,232,0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,87,153,1)), color-stop(100%,rgba(125,185,232,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#007db9e8',GradientType=0 ); /* IE6-9 */
+    min-height: 1000px;
+}
+
+.warning .ui-menuitem-text{color: red;}
+
+#container{
+    margin-left:auto;
+    margin-right: auto;
+    padding-top:10px;
+    padding-bottom: 10px;
+    text-align:left; /* leave unchanged */  
+    width:907px;/* optional but recommended */
+
+}
+
+#container a, #container a:hover, #container a:visited{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+#header{
+    background: url("../../images/logo.png") #29609F;
+    height: 120px;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+#content{
+    padding: 5px;
+}
+#content h1{
+    font-size:larger;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+#content table{
+    padding:10px 0px;
+    margin-bottom: 10px;
+}
+
+#loginform
+{
+    position: absolute;
+    width: 50%;
+    height: 30%;
+    left: 42%;
+    top: 30%;
+
+}
+
+body{font:13px/1.231 arial,helvetica,clean,sans-serif;
+     *font-size:small;
+     *font:x-small;
+     margin-left: auto;
+     margin-right: auto;
+     top: 10%;
+     margin: 0 auto; 
+     width: 80%;
+}
+
+#errorform
+{
+    color: #ff0000;
+    background-color: #ffEEEE;
+    border: 3px solid #ff0000;
+    position: absolute;
+    width: 26%;
+    height: 6%;
+    left: 42%;
+    top: 20%;
+    font-size: 20px;
+    
+
+}
+
+
+
+select,input,button,textarea{font:99% arial,helvetica,clean,sans-serif;}table{font-size:inherit;font:100%}pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
+

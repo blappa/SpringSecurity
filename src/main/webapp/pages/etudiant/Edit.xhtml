@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog  widgetVar="EditDialog" modal="true" resizable="false" appendToBody="true" header="#{msg['etudiant.titreEdition']}" showEffect="explode" hideEffect="clip"  >
+
+            <h:form id="EditForm">
+ 
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{etudiantBean.selectedEtudiant != null}">
+
+                       <p:outputLabel value="nom *" for="nom" />
+                        <p:inputText id="nom" value="#{etudiantBean.selectedEtudiant.name}" title="nom"  />
+
+                        <p:outputLabel value="note *" for="sigle" />
+                        <p:inputText id="sigle" value="#{etudiantBean.selectedEtudiant.note}" title="sigle"  />
+                        
+                        <p:outputLabel value="date de naissance" for="sigle1" />
+                        <p:calendar id="sigle1" value="#{etudiantBean.selectedEtudiant.birthDate}" title="sigle" effect="explode"  />
+
+                        <p:outputLabel value="departement"  />
+                        <p:selectOneMenu value="#{etudiantBean.idDepartement}" style="width: 100%"   >
+                            <f:selectItem itemValue="" itemLabel="Choisir" />
+                            <f:selectItems value="#{etudiantBean.departements}" var="v" itemLabel="#{v.sigle}" itemValue="#{v.id}" />
+                        </p:selectOneMenu>
+                        
+                    </p:panelGrid>
+                    <p:panel visible="false" >
+                        <p:inputText id="id" value="#{etudiantBean.selectedEtudiant.id}" />
+                    </p:panel>
+                </h:panelGroup>
+
+                <p:commandButton actionListener="#{etudiantBean.modifier}" value="#{msg['bouton.modifier']}" update="display,:ListForm:datalist,:growl" oncomplete="EditDialog.hide();" />
+                <p:commandButton value="#{msg['bouton.annuler']}"   onclick="EditDialog.hide();" update=":growl"/>
+
+
+            </h:form>
+
+        </p:dialog>
+
+
+
+    </ui:composition>
+
+</html>
